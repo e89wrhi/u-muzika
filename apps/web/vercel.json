@@ -1,0 +1,6 @@
+{
+  "installCommand": "cd ../.. && npm install",
+  "buildCommand": "cd ../.. && SKIP_ENV_VALIDATION=1 npx turbo run build --filter=web --concurrency=1",
+  "outputDirectory": ".next",
+  "framework": "nextjs"
+}

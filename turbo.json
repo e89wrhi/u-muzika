@@ -1,0 +1,36 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "globalEnv": ["NODE_ENV", "VERCEL", "VERCEL_ENV", "VERCEL_URL", "NEXT_PUBLIC_VERCEL_URL"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": [
+        "AUTH_DUENDE_ISSUER",
+        "AUTH_DUENDE_ID",
+        "AUTH_DUENDE_SECRET",
+        "REQUIRED_ROLE",
+        "USE_MOCK_AUTH",
+        "NEXTAUTH_SECRET",
+        "NEXTAUTH_URL",
+        "AUTH_SECRET",
+        "GOOGLE_CLIENT_ID",
+        "GOOGLE_CLIENT_SECRET",
+        "NEXT_PUBLIC_APP_URL",
+        "NEXT_PUBLIC_API_URL"
+      ]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

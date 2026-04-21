@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm rebuild sharp && SKIP_ENV_VALIDATION=1 npx turbo run build --concurrency=1",
+  "outputDirectory": "apps/web/.next",
+  "framework": "nextjs"
+}
