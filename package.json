@@ -6,22 +6,33 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:e2e": "turbo run e2e --filter=@muzika/e2e",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
-    "next": "^15.3.3",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.13",
     "@tailwindcss/typography": "^0.5.19",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.21",
+    "happy-dom": "^20.9.0",
+    "jsdom": "^29.1.0",
+    "next": "^15.3.3",
+    "playwright": "^1.59.1",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.11",
-    "turbo": "^2.6.1",
-    "typescript": "5.9.2"
+    "turbo": "^2.9.6",
+    "typescript": "5.9.2",
+    "vitest": "^4.1.5"
   },
   "overrides": {
     "react": "^19.1.0",
@@ -33,6 +44,7 @@
   "packageManager": "npm@10.9.2",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "tests/*"
   ]
 }

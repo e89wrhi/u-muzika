@@ -1,0 +1,11 @@
+{
+  "name": "@muzika/config",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./vitest": "./vitest.config.js",
+    "./vitest-react": "./vitest.react.js",
+    "./vitest-node": "./vitest.node.js",
+    "./playwright": "./playwright.config.ts"
+  }
+}
