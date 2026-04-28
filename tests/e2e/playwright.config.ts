@@ -1,1 +1,1 @@
-export { default } from "@muzika/config/playwright"
+export { default } from "@muzika/config/playwright";

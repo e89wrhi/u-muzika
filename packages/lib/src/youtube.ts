@@ -1,5 +1,6 @@
-const API_KEY = process.env.YOUTUBE_API_KEY || process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-const BASE_URL = 'https://www.googleapis.com/youtube/v3';
+const API_KEY =
+  process.env.YOUTUBE_API_KEY || process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
 export interface YouTubeChannel {
   id: string;
@@ -18,19 +19,21 @@ export interface YouTubeChannel {
   };
 }
 
-export async function getChannelDetails(channelIds: string[]): Promise<YouTubeChannel[]> {
+export async function getChannelDetails(
+  channelIds: string[],
+): Promise<YouTubeChannel[]> {
   if (!API_KEY) {
-    console.warn('YOUTUBE_API_KEY is not defined');
+    console.warn("YOUTUBE_API_KEY is not defined");
     return [];
   }
 
   const response = await fetch(
-    `${BASE_URL}/channels?part=snippet,statistics&id=${channelIds.join(',')}&key=${API_KEY}`
+    `${BASE_URL}/channels?part=snippet,statistics&id=${channelIds.join(",")}&key=${API_KEY}`,
   );
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.error?.message || 'Failed to fetch YouTube channels');
+    throw new Error(error.error?.message || "Failed to fetch YouTube channels");
   }
 
   const data = await response.json();
@@ -48,7 +51,7 @@ export async function getChannelVideos(channelId: string, maxResults = 10) {
   if (!API_KEY) return [];
 
   const response = await fetch(
-    `${BASE_URL}/search?part=snippet&channelId=${channelId}&maxResults=${maxResults}&order=date&type=video&key=${API_KEY}`
+    `${BASE_URL}/search?part=snippet&channelId=${channelId}&maxResults=${maxResults}&order=date&type=video&key=${API_KEY}`,
   );
 
   if (!response.ok) return [];
@@ -61,7 +64,7 @@ export async function getVideoDetails(videoId: string) {
   if (!API_KEY) return null;
 
   const response = await fetch(
-    `${BASE_URL}/videos?part=snippet,statistics&id=${videoId}&key=${API_KEY}`
+    `${BASE_URL}/videos?part=snippet,statistics&id=${videoId}&key=${API_KEY}`,
   );
 
   if (!response.ok) return null;
@@ -74,7 +77,7 @@ export async function getChannelPlaylists(channelId: string, maxResults = 10) {
   if (!API_KEY) return [];
 
   const response = await fetch(
-    `${BASE_URL}/playlists?part=snippet,contentDetails&channelId=${channelId}&maxResults=${maxResults}&key=${API_KEY}`
+    `${BASE_URL}/playlists?part=snippet,contentDetails&channelId=${channelId}&maxResults=${maxResults}&key=${API_KEY}`,
   );
 
   if (!response.ok) return [];
@@ -87,7 +90,7 @@ export async function getPlaylistDetails(playlistId: string) {
   if (!API_KEY) return null;
 
   const response = await fetch(
-    `${BASE_URL}/playlists?part=snippet,contentDetails&id=${playlistId}&key=${API_KEY}`
+    `${BASE_URL}/playlists?part=snippet,contentDetails&id=${playlistId}&key=${API_KEY}`,
   );
 
   if (!response.ok) return null;
@@ -100,7 +103,7 @@ export async function getPlaylistItems(playlistId: string, maxResults = 50) {
   if (!API_KEY) return [];
 
   const response = await fetch(
-    `${BASE_URL}/playlistItems?part=snippet,contentDetails&playlistId=${playlistId}&maxResults=${maxResults}&key=${API_KEY}`
+    `${BASE_URL}/playlistItems?part=snippet,contentDetails&playlistId=${playlistId}&maxResults=${maxResults}&key=${API_KEY}`,
   );
 
   if (!response.ok) return [];
@@ -113,7 +116,7 @@ export async function getVideoDetailsBatch(videoIds: string[]) {
   if (!API_KEY || videoIds.length === 0) return [];
 
   const response = await fetch(
-    `${BASE_URL}/videos?part=snippet,contentDetails,statistics&id=${videoIds.join(',')}&key=${API_KEY}`
+    `${BASE_URL}/videos?part=snippet,contentDetails,statistics&id=${videoIds.join(",")}&key=${API_KEY}`,
   );
 
   if (!response.ok) return [];
