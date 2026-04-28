@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import { ThemeProvider } from 'next-themes';
+import { ClerkProvider } from '@clerk/nextjs';
 import { cn, constructMetadata } from '@/lib/utils';
 import { Toaster } from '@/components/ui/sonner';
 import { Analytics } from '@/components/analytics';
@@ -16,32 +17,34 @@ export const metadata = constructMetadata();
 export default async function RootLayout({ children }: RootLayoutProps) {
   const messages = await getMessages();
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body className={cn('min-h-screen bg-background font-sans antialiased')}>
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <TooltipProvider>{children}</TooltipProvider>
-            <Analytics />
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body className={cn('min-h-screen bg-background font-sans antialiased')}>
+          <NextIntlClientProvider messages={messages}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <TooltipProvider>{children}</TooltipProvider>
+              <Analytics />
 
-            <Toaster
-              position="top-center"
-              toastOptions={{
-                classNames: {
-                  toast: 'bg-background text-foreground border border-border',
-                  description: 'text-muted-foreground',
-                },
-                duration: 2000,
-              }}
-            />
-          </ThemeProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+              <Toaster
+                position="top-center"
+                toastOptions={{
+                  classNames: {
+                    toast: 'bg-background text-foreground border border-border',
+                    description: 'text-muted-foreground',
+                  },
+                  duration: 2000,
+                }}
+              />
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

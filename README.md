@@ -36,6 +36,7 @@ This project is built as a high-performance monorepo using [Turborepo](https://t
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/your-username/u-muzika
    cd u-muzika
@@ -43,6 +44,7 @@ This project is built as a high-performance monorepo using [Turborepo](https://t
 
 2. Configure Environment:
    Create a `.env` file in the root or `apps/web` with your YouTube API Key:
+
    ```env
    YOUTUBE_API_KEY=YOUR_API_KEY_HERE
    ```
@@ -55,6 +57,7 @@ This project is built as a high-performance monorepo using [Turborepo](https://t
 ### Development
 
 Start the development cluster:
+
 ```bash
 npm run dev
 ```

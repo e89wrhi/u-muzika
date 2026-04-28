@@ -24,7 +24,8 @@ export const ARTISTS: Artist[] = [
     id: 'UC2s9j9EMXMFklxGqDPJp-qQ',
     name: 'Rophnan',
     image: 'https://i.ytimg.com/vi/placeholder/hqdefault.jpg',
-    description: 'Ethiopian musician, producer and songwriter known for EDM music.',
+    description:
+      'Ethiopian musician, producer and songwriter known for EDM music.',
   },
   {
     id: 'UCydlocDyvRtFmMffKytKqgQ',
@@ -36,7 +37,8 @@ export const ARTISTS: Artist[] = [
     id: 'UCAlTDckOOQ2jREOvuCShGbw',
     name: 'Bob Marley',
     image: 'https://i.ytimg.com/vi/placeholder/hqdefault.jpg',
-    description: 'Jamaican singer, musician, and songwriter. A global icon of reggae.',
+    description:
+      'Jamaican singer, musician, and songwriter. A global icon of reggae.',
   },
   {
     id: 'UCEzDdNqNkT-7rSfSGSr1hWg',

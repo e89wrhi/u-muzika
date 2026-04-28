@@ -5,6 +5,7 @@ The U Muzika Web App is the primary engine of the platform, delivering a world-c
 ## 🎨 Design Philosophy
 
 The application prioritizes **Visual Excellence** and **High-End Aesthetics**:
+
 - **Spotify-Inspired**: Familiar yet elevated layouts for tracks and playlists.
 - **Micro-Animations**: Hover-triggered play buttons, scale-up transformations, and pulsing backdrop orbs.
 - **Glassmorphism**: Extensive use of backdrop filters and semi-transparent layers for a deep, layered UI.
@@ -13,16 +14,19 @@ The application prioritizes **Visual Excellence** and **High-End Aesthetics**:
 ## 🚀 Key Page Types
 
 ### Artist Profile
+
 - Dynamic headers with profile images and YouTube verified checkmarks.
 - Formatted bios with interactive hashtags and external links.
 - Responsive Discography and Video grids.
 
 ### Video / Player View
+
 - Smart detection of **YouTube Shorts** with vertical aspect ratio support.
 - Minimalist "Stats-First" layout with oversized view counts.
 - Instant "Copy Link" to clipboard with visual toast feedback.
 
 ### Album / Collection View
+
 - Immersive background "glow" effects matching the collection artwork.
 - Batch-computed total playtime and collection-wide view counts.
 
