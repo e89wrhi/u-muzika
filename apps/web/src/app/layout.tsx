@@ -20,7 +20,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <body className={cn('min-h-screen bg-background font-sans antialiased')}>
+        <body
+          className={cn('min-h-screen bg-background font-sans antialiased')}
+        >
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider
               attribute="class"

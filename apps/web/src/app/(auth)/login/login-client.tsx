@@ -55,10 +55,10 @@ export default function LoginClient() {
             className="h-22 w-22"
           />
           <h1 className="text-2xl font-semibold tracking-tight">
-            {t('login.wellcome')}
+            {t('Wellcome')}
           </h1>
           <p className="text-sm text-muted-foreground">
-            {t('login.wellcomeSub')}
+            {t('Wellcome to U Muzika')}
           </p>
         </div>
         <Suspense>
@@ -69,7 +69,7 @@ export default function LoginClient() {
             href="/register"
             className="hover:text-brand underline underline-offset-4"
           >
-            {t('login.signup')}
+            Join
           </Link>
         </p>
       </div>
