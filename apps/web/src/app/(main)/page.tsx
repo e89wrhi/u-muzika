@@ -4,9 +4,6 @@ import { ArtistCard } from './components/artist-card';
 import { getChannelDetails } from '@muzika/lib';
 import { Metadata } from 'next';
 import { auth } from '@clerk/nextjs/server';
-import Link from 'next/link';
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'U Muzika | Discover Your Sound',
@@ -15,6 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { userId } = await auth();
   let displayedArtists = ARTISTS;
 
@@ -38,7 +36,6 @@ export default async function HomePage() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-white dark:bg-black">
       <DetailWidthWrapper className="relative max-w-6xl z-10 !bg-transparent pt-20 pb-32 shadow-none">
-          
         <div id="artists" className="scroll-mt-32">
           <div className="grid grid-cols-1 pt-15 gap-11 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
             {displayedArtists.map((artist, i) => (

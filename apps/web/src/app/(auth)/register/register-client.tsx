@@ -9,13 +9,11 @@ import { Suspense, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
-import { useTranslations } from 'next-intl';
 import { Spinner } from '@/components/ui/spinner';
 
 export default function RegisterClient() {
   const { isSignedIn, isLoaded } = useUser();
   const router = useRouter();
-  const t = useTranslations();
 
   useEffect(() => {
     // Check if Clerk has loaded and the user is signed in
@@ -40,15 +38,15 @@ export default function RegisterClient() {
           'absolute right-4 top-4 md:right-8 md:top-8'
         )}
       >
-        {t('register.login')}
+        Login
       </Link>
       <div className="flex items-center justify-center">
         <Image
-          src="/_illustration/illu_phone_dark.png"
+          src="/logo.png"
           alt="illustratin"
           width={400}
           height={400}
-          className="h-140 w-70"
+          className="h-70 w-70"
         />
       </div>
 
@@ -63,18 +61,14 @@ export default function RegisterClient() {
               className="h-22 w-22"
             />
             <h1 className="text-2xl font-semibold tracking-tight">
-              {t('register.create')}
+              Join U Muzika
             </h1>
-            <p className="text-sm text-muted-foreground">
-              {t('register.createSub')}
-            </p>
+            <p className="text-sm text-muted-foreground">enjoy u muzika</p>
           </div>
           <Suspense>
             <UserAuthForm type="register" />
           </Suspense>
-          <p className="px-8 text-center text-sm text-muted-foreground">
-            {t('register.footer')}
-          </p>
+          <p className="px-8 text-center text-sm text-muted-foreground">Join</p>
         </div>
       </div>
     </div>

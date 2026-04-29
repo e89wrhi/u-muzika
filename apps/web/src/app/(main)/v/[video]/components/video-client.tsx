@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import DetailWidthWrapper from '@/components/layout/detail-width-wrapper';
 import { Button } from '@/components/ui/button';
-import { Copy, Check, Hash, AtSign, ExternalLink } from 'lucide-react';
+import { Copy, Check, Hash, AtSign, ExternalLink, Bot } from 'lucide-react';
+import { useAuth } from '@clerk/nextjs';
+import Link from 'next/link';
 
 interface VideoClientProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -71,6 +73,7 @@ function formatDescription(text: string) {
 
 export function VideoClient({ video }: VideoClientProps) {
   const [copied, setCopied] = useState(false);
+  const { isSignedIn } = useAuth();
 
   const handleCopy = () => {
     if (typeof window !== 'undefined') {
@@ -150,6 +153,18 @@ export function VideoClient({ video }: VideoClientProps) {
             <div className="flex flex-wrap gap-4 shrink-0">
               <Button className="h-14 rounded-full bg-red-600 px-10 hover:bg-red-700 text-white font-black shadow-xl shadow-red-600/20 text-lg transition-transform hover:scale-105 active:scale-95">
                 Subscribe
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="h-14 rounded-full bg-white dark:bg-neutral-900 px-10 border-neutral-200 dark:border-neutral-800 font-bold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all text-red-500 dark:text-red-400 group/chat"
+              >
+                <Link
+                  href={isSignedIn ? `/talk-video?id=${video.id}` : '/login'}
+                >
+                  <Bot className="mr-2 h-5 w-5 transition-transform group-hover/chat:scale-110" />
+                  Talk with AI
+                </Link>
               </Button>
               <Button
                 variant="outline"

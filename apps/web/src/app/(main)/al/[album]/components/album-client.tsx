@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import DetailWidthWrapper from '@/components/layout/detail-width-wrapper';
@@ -17,15 +18,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { cn } from '@muzika/lib';
 import { useState } from 'react';
+import { useAuth } from '@clerk/nextjs';
+import { Bot } from 'lucide-react';
 
 interface AlbumClientProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   album: any;
 }
 
 export function AlbumClient({ album }: AlbumClientProps) {
   const router = useRouter();
   const [isCopied, setIsCopied] = useState(false);
+  const { isSignedIn } = useAuth();
 
   const handlePlayOnYouTube = () => {
     window.open(`https://www.youtube.com/playlist?list=${album.id}`, '_blank');
@@ -143,6 +146,18 @@ export function AlbumClient({ album }: AlbumClientProps) {
                 >
                   <ExternalLink className="mr-3 h-7 w-7 transition-all group-hover:scale-110" />{' '}
                   Play on YouTube
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="h-16 px-10 rounded-full backdrop-blur-xl border-neutral-200 dark:border-neutral-800 font-bold transition-all shadow-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 flex items-center gap-2 group/chat text-red-500 dark:text-red-400"
+                >
+                  <Link
+                    href={isSignedIn ? `/talk-album?id=${album.id}` : '/login'}
+                  >
+                    <Bot className="mr-2 h-5 w-5 transition-transform group-hover/chat:scale-110" />
+                    Talk with AI
+                  </Link>
                 </Button>
                 <Button
                   variant="outline"
