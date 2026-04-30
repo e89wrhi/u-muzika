@@ -10,10 +10,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { Spinner } from '@/components/ui/spinner';
+import { useTranslations } from 'next-intl';
 
 export default function RegisterClient() {
   const { isSignedIn, isLoaded } = useUser();
   const router = useRouter();
+  const t = useTranslations();
 
   useEffect(() => {
     // Check if Clerk has loaded and the user is signed in
@@ -38,7 +40,7 @@ export default function RegisterClient() {
           'absolute right-4 top-4 md:right-8 md:top-8'
         )}
       >
-        Login
+        {t('login')}
       </Link>
       <div className="flex items-center justify-center">
         <Image
@@ -61,14 +63,18 @@ export default function RegisterClient() {
               className="h-22 w-22"
             />
             <h1 className="text-2xl font-semibold tracking-tight">
-              Join U Muzika
+              {t('Join U Muzika')}
             </h1>
-            <p className="text-sm text-muted-foreground">enjoy u muzika</p>
+            <p className="text-sm text-muted-foreground">
+              {t('enjoy u muzika')}
+            </p>
           </div>
           <Suspense>
             <UserAuthForm type="register" />
           </Suspense>
-          <p className="px-8 text-center text-sm text-muted-foreground">Join</p>
+          <p className="px-8 text-center text-sm text-muted-foreground">
+            {t('Join')}
+          </p>
         </div>
       </div>
     </div>

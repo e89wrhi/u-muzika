@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Icons } from '@/components/shared/icons';
+import { useTranslations } from 'next-intl';
 
 const userAuthSchema = z.object({
   email: z.string().email(),
@@ -30,6 +31,7 @@ export function UserAuthForm({
   type = 'login',
   ...props
 }: UserAuthFormProps) {
+  const t = useTranslations();
   const {
     register,
     handleSubmit,
@@ -48,9 +50,9 @@ export function UserAuthForm({
       // Clerk email sign-in (magic link)
       const emailUrl = `/sign-in?email=${encodeURIComponent(data.email.toLowerCase())}&redirectUrl=${searchParams?.get('from') || '/me'}`;
       window.location.href = emailUrl;
-      toast.success('Check your email for the login link!');
+      toast.success(t('checkEmail'));
     } catch (err) {
-      toast.error('Something went wrong. Please try again.');
+      toast.error(t('error'));
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -75,7 +77,7 @@ export function UserAuthForm({
           ) : (
             <Icons.google className="mr-2 size-4" />
           )}
-          Google
+          {t('Google')}
         </Button>
       </SignInButton>
     </div>

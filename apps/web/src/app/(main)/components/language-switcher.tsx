@@ -6,7 +6,10 @@ import { Languages, Check, ChevronDown } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 
-const languages = [{ code: 'en', name: 'English', flag: '🇺🇸' }];
+const languages = [
+  { code: 'am', name: 'Amharic', flag: '🇪🇹' },
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+];
 
 export function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
