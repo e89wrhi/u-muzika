@@ -5,6 +5,7 @@ import { getChannelDetails } from '@muzika/lib';
 import { Metadata } from 'next';
 import { auth } from '@clerk/nextjs/server';
 import { getTranslations } from 'next-intl/server';
+import Link from 'next/link';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
@@ -52,6 +53,13 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
+
+        <Link
+          href="/how"
+          className="mt-16 inline-block text-lg font-medium text-primary hover:underline"
+        >
+          How it Works
+        </Link>
       </DetailWidthWrapper>
     </div>
   );
