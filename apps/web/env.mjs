@@ -15,6 +15,7 @@ export const env = createEnv({
     STRIPE_WEBHOOK_SECRET: z.string().min(1).optional(),
     STRIPE_PRO_PRICE_ID: z.string().optional(),
     STRIPE_ULTRA_PRICE_ID: z.string().optional(),
+    OPENAI_API_KEY: z.string().min(1).optional(),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().min(1).optional().default('http://localhost:3000'),
@@ -45,6 +46,7 @@ export const env = createEnv({
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
     STRIPE_PRO_PRICE_ID: process.env.STRIPE_PRO_PRICE_ID,
     STRIPE_ULTRA_PRICE_ID: process.env.STRIPE_ULTRA_PRICE_ID,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
 
     // Client-side
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,

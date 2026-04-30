@@ -3,6 +3,20 @@
 -- Run in Supabase SQL editor (Dashboard > SQL Editor)
 -- ============================================================
 
+-- ─── 0. Base user table ─────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS "user" (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  clerk_id text UNIQUE NOT NULL,
+  email text,
+  email_verified boolean,
+  name text,
+  image text,
+  foo text,
+  clerk_user jsonb,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
 -- ─── 1. Extend user table ───────────────────────────────────────────────────
 ALTER TABLE "user"
   ADD COLUMN IF NOT EXISTS credits             integer NOT NULL DEFAULT 50,
@@ -94,11 +108,14 @@ ALTER TABLE credit_transactions  ENABLE ROW LEVEL SECURITY;
 ALTER TABLE access_keys          ENABLE ROW LEVEL SECURITY;
 
 -- Service role bypasses RLS automatically; the policies below cover anon/auth reads
-CREATE POLICY IF NOT EXISTS "Own subscriptions"
+DROP POLICY IF EXISTS "Own subscriptions" ON subscriptions;
+CREATE POLICY "Own subscriptions"
   ON subscriptions FOR SELECT USING (clerk_id = current_setting('app.clerk_id',true));
 
-CREATE POLICY IF NOT EXISTS "Own transactions"
+DROP POLICY IF EXISTS "Own transactions" ON credit_transactions;
+CREATE POLICY "Own transactions"
   ON credit_transactions FOR SELECT USING (clerk_id = current_setting('app.clerk_id',true));
 
-CREATE POLICY IF NOT EXISTS "Own access keys"
+DROP POLICY IF EXISTS "Own access keys" ON access_keys;
+CREATE POLICY "Own access keys"
   ON access_keys FOR SELECT USING (clerk_id = current_setting('app.clerk_id',true));
