@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Copy, Check, Hash, AtSign, ExternalLink, Bot } from 'lucide-react';
 import { useAuth } from '@clerk/nextjs';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface VideoClientProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -72,6 +73,7 @@ function formatDescription(text: string) {
 }
 
 export function VideoClient({ video }: VideoClientProps) {
+  const t = useTranslations();
   const [copied, setCopied] = useState(false);
   const { isSignedIn } = useAuth();
 
@@ -100,7 +102,7 @@ export function VideoClient({ video }: VideoClientProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-10 border-y border-neutral-200 dark:border-neutral-800">
           <div className="flex flex-col items-center md:items-start space-y-1">
             <span className="text-sm font-bold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-500">
-              Views
+              {t('Views')}
             </span>
             <span className="text-4xl font-black tracking-tighter text-neutral-900 dark:text-white md:text-5xl">
               {video.views}
@@ -108,7 +110,7 @@ export function VideoClient({ video }: VideoClientProps) {
           </div>
           <div className="flex flex-col items-center md:items-start space-y-1">
             <span className="text-sm font-bold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-500">
-              Likes
+              {t('Likes')}
             </span>
             <span className="text-4xl font-black tracking-tighter text-red-600 md:text-5xl">
               {video.likes}
@@ -116,7 +118,7 @@ export function VideoClient({ video }: VideoClientProps) {
           </div>
           <div className="flex flex-col items-center md:items-start space-y-1">
             <span className="text-sm font-bold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-500">
-              Released
+              {t('Released')}
             </span>
             <span className="text-2xl font-black tracking-tighter text-neutral-900 dark:text-white md:text-3xl">
               {video.date}
@@ -143,7 +145,7 @@ export function VideoClient({ video }: VideoClientProps) {
                   <div className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
                     <p className="text-sm font-bold text-neutral-500 dark:text-neutral-400">
-                      Verified Channel
+                      {t('verifiedChannel')}
                     </p>
                   </div>
                 </div>
@@ -152,7 +154,7 @@ export function VideoClient({ video }: VideoClientProps) {
 
             <div className="flex flex-wrap gap-4 shrink-0">
               <Button className="h-14 rounded-full bg-red-600 px-10 hover:bg-red-700 text-white font-black shadow-xl shadow-red-600/20 text-lg transition-transform hover:scale-105 active:scale-95">
-                Subscribe
+                {t('Subscribe')}
               </Button>
               <Button
                 asChild
@@ -163,7 +165,7 @@ export function VideoClient({ video }: VideoClientProps) {
                   href={isSignedIn ? `/talk-video?id=${video.id}` : '/login'}
                 >
                   <Bot className="mr-2 h-5 w-5 transition-transform group-hover/chat:scale-110" />
-                  Talk with AI
+                  {t('talkWithAI')}
                 </Link>
               </Button>
               <Button
@@ -176,7 +178,7 @@ export function VideoClient({ video }: VideoClientProps) {
                 ) : (
                   <Copy className="mr-2 h-5 w-5" />
                 )}
-                {copied ? 'Link Copied' : 'Copy Link'}
+                {copied ? t('linkCopied') : t('copyLink')}
               </Button>
             </div>
           </div>
@@ -185,7 +187,7 @@ export function VideoClient({ video }: VideoClientProps) {
             <div className="flex items-center gap-2 mb-6">
               <div className="h-1 w-8 rounded-full bg-red-600" />
               <h4 className="text-sm font-black uppercase tracking-widest text-neutral-500">
-                Video Description
+                {t('videoDescription')}
               </h4>
             </div>
             <div className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300 whitespace-pre-wrap selection:bg-red-200 dark:selection:bg-red-900/30">

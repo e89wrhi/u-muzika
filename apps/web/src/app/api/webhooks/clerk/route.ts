@@ -45,6 +45,9 @@ export async function POST(req: Request) {
         foo: null,
         clerk_user: user,
         clerk_id: user.id,
+        credits: 50,
+        subscription_tier: 'free',
+        subscription_status: 'active',
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       });

@@ -4,12 +4,15 @@ import { ArtistCard } from './components/artist-card';
 import { getChannelDetails } from '@muzika/lib';
 import { Metadata } from 'next';
 import { auth } from '@clerk/nextjs/server';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'U Muzika | Discover Your Sound',
-  description:
-    'Experience the ultimate music platform powered by YouTube. Discover your favorite artists, playlists, and videos in a premium interface.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations();
+  return {
+    title: t('artistTitle'),
+    description: t('artistDesc'),
+  };
+}
 
 export default async function HomePage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -28,7 +28,11 @@ export default function LoginClient() {
 
   // Optionally show a loading state while checking status
   if (!isLoaded || isSignedIn) {
-    return <Spinner />;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <Spinner className="size-10" />
+      </div>
+    );
   }
 
   return (
@@ -69,7 +73,7 @@ export default function LoginClient() {
             href="/register"
             className="hover:text-brand underline underline-offset-4"
           >
-            Join
+            {t('Join')}
           </Link>
         </p>
       </div>

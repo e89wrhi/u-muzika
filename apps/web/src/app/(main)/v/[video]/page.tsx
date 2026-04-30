@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { VideoClient } from './components/video-client';
 import { getVideoDetails } from '@muzika/lib';
 import { Metadata } from 'next';
+import { getFormatter, getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({
   params,
@@ -10,14 +11,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { video: videoId } = await params;
   const videoData = await getVideoDetails(videoId);
+  const t = await getTranslations();
 
-  if (!videoData) return { title: 'Video Not Found | U Muzika' };
+  if (!videoData) {
+    const brand = t('artistTitle').split('|')[1]?.trim() || 'U Muzika';
+    return { title: `Video Not Found | ${brand}` };
+  }
 
+  const brand = t('artistTitle').split('|')[1]?.trim() || 'U Muzika';
   return {
-    title: `${videoData.snippet.title} | U Muzika`,
-    description: videoData.snippet.description.substring(0, 160),
+    title: `${videoData?.snippet?.title || ''} | ${brand}`,
+    description: videoData?.snippet?.description?.substring(0, 160) || '',
     openGraph: {
-      images: [videoData.snippet.thumbnails.high?.url || ''],
+      images: [videoData?.snippet?.thumbnails?.high?.url || ''],
     },
   };
 }
@@ -36,6 +42,8 @@ export default async function VideoPage({
 
   try {
     const videoData = await getVideoDetails(videoId);
+    const format = await getFormatter();
+
     if (videoData) {
       video = {
         id: videoId,
@@ -45,10 +53,11 @@ export default async function VideoPage({
         likes: videoData.statistics.likeCount
           ? parseInt(videoData.statistics.likeCount).toLocaleString()
           : '0',
-        date: new Date(videoData.snippet.publishedAt).toLocaleDateString(
-          'en-US',
-          { month: 'short', day: 'numeric', year: 'numeric' }
-        ),
+        date: format.dateTime(new Date(videoData.snippet.publishedAt), {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        }),
         description: videoData.snippet.description,
         channel: videoData.snippet.channelTitle,
         channelSubs: 'N/A',

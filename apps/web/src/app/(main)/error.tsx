@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import DetailWidthWrapper from '@/components/layout/detail-width-wrapper';
 import { Button } from '@/components/ui/button';
 import { RefreshCcw, AlertTriangle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function Error({
   error,
@@ -12,6 +13,7 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const t = useTranslations();
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -31,7 +33,7 @@ export default function Error({
 
             <div className="space-y-4 max-w-lg mx-auto">
               <h1 className="text-4xl font-black tracking-tighter text-neutral-900 dark:text-white md:text-5xl">
-                Something felt <span className="text-red-600">Off-Key.</span>
+                {t('errorTitle')}
               </h1>
               <p className="text-neutral-500 dark:text-neutral-400 font-medium text-lg italic">
                 &quot;
@@ -40,8 +42,7 @@ export default function Error({
                 &quot;
               </p>
               <p className="text-sm text-neutral-400 dark:text-neutral-500 max-w-sm mx-auto">
-                Don&apos;t worry, even the best artists have technical You can
-                try reloading the page.
+                {t('errorDesc')}
               </p>
             </div>
           </div>
@@ -51,14 +52,14 @@ export default function Error({
               onClick={() => reset()}
               className="h-14 rounded-full bg-red-600 px-10 hover:bg-red-700 text-white font-black shadow-xl shadow-red-600/20 text-lg transition-transform hover:scale-105 active:scale-95"
             >
-              <RefreshCcw className="mr-2 h-6 w-6" /> Try Again
+              <RefreshCcw className="mr-2 h-6 w-6" /> {t('tryAgain')}
             </Button>
             <Button
               variant="outline"
               onClick={() => (window.location.href = '/')}
               className="h-14 rounded-full px-10 bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 font-bold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all"
             >
-              Back to Home
+              {t('backToHome')}
             </Button>
           </div>
         </div>

@@ -8,7 +8,7 @@ export default async function Layout({ children }: LayoutProps) {
   return (
     <div className="flex w-full min-h-screen bg-white dark:bg-black">
       <NavBar />
-      <main className="w-full flex-1 pt-12">{children}</main>
+      <main className="w-full flex-1 pt-14">{children}</main>
     </div>
   );
 }
