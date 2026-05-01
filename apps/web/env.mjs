@@ -27,7 +27,6 @@ export const env = createEnv({
 
     // Stripe Client
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().min(1).optional(),
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1),
   },
   runtimeEnv: {
     CLERK_FRONTEND_API_URL: process.env.CLERK_FRONTEND_API_URL,
